@@ -3,11 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <title>나의 아카이브 페이지</title>
+    <style>
+        /* 기본셋팅 초기화 */
+        html,body,h1,h2{
+            margin: 0;
+            padding: 0;
+        }
+
+        body{
+            /* 배경이미지 */
+            background-image: url(./imgs/worksbg.jpg);
+            /* 배경 반복 안함 */
+            background-repeat: no-repeat;
+            /* 배경 고정 */
+            background-attachment: fixed;
+            /* 배경 중앙 */
+            background-position: center;
+            /* 배경 크기 빈틈없이 채우기(비율유지) */
+            background-size: cover;
+        }
+
+        /* 전체박스 */
+        .wrap{
+            width: 1200px;
+            /* 블록 가로 중앙 */
+            margin: 50px auto;
+            /* 배경 반투명 흰색 */
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 15px;
+            /* 둥근 모서리 */
+            border-radius: 15px;
+        }
+        /* 1. 전체제목 */
+        .tit{
+            /* 글자중앙정렬 -> 글자가 아니어도 인라인 요소이면 중앙 정렬 */
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
     <h1>나의 아카이브</h1>
     <h2>
-        <a href="001.HTML학습/01.Info_PJ/" target="_blank">네이버요약뉴스</a>
+        <!-- 전체박스 -->
+        <div class="wrap">
+            <!-- 1. 전체 제목 -->
+            <h1 class="tit">
+                <img src="imgs/mylogo_14.png" alt="아카이브 로고">
+            </h1>
+            <!-- 2. 프로젝트 박스 -->
+            <div class="pbx">
+                <!-- 2-1. 공통 프로젝트 -->
+                <section>
+                    <h2>개인프로젝트</h2>
+                    <ul>
+                        <li>
+                            <a href="001.HTML학습/01.Info_PJ/info.html" target="_blank">
+                                기본전달사항
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="001.HTML학습/01.Info_PJ/index.html" target="_blank">
+                                네이버 요약뉴스
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+                <!-- 2-2. 개인 프로젝트 -->
+            </div>
+        </div>
     </h2>
 
 </body>
