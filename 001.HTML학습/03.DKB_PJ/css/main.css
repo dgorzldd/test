@@ -29,18 +29,20 @@ body *{
 /* 컨텐츠 파트 최상위부모 */
 body{
     /* 한번에 배경주기!!! */
-    /* background: url(../images/bg_mainvisual.jpg) */
-    /* no-repeat fixed center/cover; */
     /* background : 색상 이미지 반복여부 고정 위치/크기  */
     /* background : 색이 반고윙/크*/
-
+    
+    /* 로고가 위에 와야해서 먼저 배경 셋팅함 */
+    background:
+    url(../images/bg_logo_a_01.png) no-repeat fixed 10% 30%/10%,
+    url(../images/bg_mainvisual.jpg) no-repeat fixed center/cover;
 
     /* 따로주기 */
-    background-image: url(../images/bg_mainvisual.jpg);
+    /* background-image: url(../images/bg_mainvisual.jpg);
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
-    background-size: cover;
+    background-size: cover; */
 
     /* 1. 배경색 */
     /* background-color: lightpink; */
@@ -92,7 +94,9 @@ body{
 /******************* 공통클래스 **********************/
 /* 속박스 클래스 */
 .ibx{
-    width: 1200px;
+    /* width: 1200px; */
+    /* 최대 가로 크기 1200px이다가 화면이 작아지면 auto로 자동 변경 */
+    max-width: 1200px;
     margin: 0 auto; /* 위아래 양쪽(auto는 등분함)*/
     /* 블록박스 가로중앙 */
 }
@@ -103,8 +107,107 @@ body{
 }
 /****************** 2. 메인영역 *********************/
 .main{
+    /* 가장 큰 일반 해상도 크기로 최대가로크기 변경 */
+    max-width: 1920px;
     height: 800px;
+    /* 자식요소 마진 탑 포함 */
+    overflow: hidden;
 }
+/* 캐릭터 부모박스 */
+#cbx{
+    /* 부모박스크기의 90% 가로 크기 */
+    width: 90%;
+    /* 블록 가로 중앙 */
+    margin: 0 auto;
+    /* 위쪽마진 400px로 설정 */
+    margin-top: 400px;
+
+    background-color: rgba(144, 238, 144, 0.61);
+    /* float 해제를 위해 */
+    overflow: hidden;
+
+}
+
+/* 캐릭터 박스 공통 */
+.cat{
+    /* 4등분 가로 크기 25% */
+    width: 24%;
+    /* 25% - 1%(양쪽마진) = 24% */
+    
+    /* margin: 0 0.5%; */
+    /* 양쪽마진은 0.5%씩 2개이므로 합이 1%임 이를 크기에 반영
+    참고) 0.몇 이런 수치 값은 보통 0을 생략하는 경우가 많다*/
+    margin: 0 .5%;
+    /* 
+        [ 블록요소를 옆으로 흘러가게 하기 ]
+        float속성
+        -> left 값은 나는 왼쪽 너는 오른쪽에 올라와
+        -> right 값은 나는 오른쪽 너는 왼쪽에 올라와
+
+        [ 자식요소가 float된 경우 부모요소는 높이값 0? ]
+        -> 블록 자식요소 float으로 인해 부모요소가 높이 값이 0인 경우
+        1. 부모 요소에 overflow:hidden 설정
+        2. float 자식요소 중 float이 아닌 마지막 요소에 float 해제 속성인 clear 설정
+     */
+    float: left;
+
+    /* height: 200px; */
+    /* outline: 4px dotted red; */
+    /* 손가락모양 */
+    cursor: pointer;
+}
+
+/* 캐릭터 이미지 */
+.ci>img{
+    /* 이미지 크기를 싸고 있는 부모박스에 맞춰라 */
+    width: 100%;
+}
+/* 캐릭터 이름 이미지 박스 */
+.ci span{
+    /* 블록으로 변경해서 부모박스 끝까지 차지함 */
+    display: block;
+    /* 인라인요소 중앙정렬 */
+    text-align: center;
+    /* 부모높이값 기준 21%크기만큼 반대방향(위쪽)으로 위치 이동 */
+    margin-top: -21%;
+}
+/* 캐릭터 이름이미지 */
+.ci span img{
+    /* 부모박스(span)의 가로크기의 40% 크기 */
+    width: 40%;
+}
+
+/* 첫번째 이름이미지 숨기기 */
+.ci span img:first-child{
+    display: none;
+}
+
+/* .cat에 마우스 오버시 첫번째 이미지 보이기 */
+.cat:hover .ci span img:first-child{
+    display: inline;
+}
+
+/* .cat에 마우스 오버시 마지막 이미지 숨기기 */
+.cat:hover .ci span img:last-child{
+    display: none;
+}
+/* 
+    [ 자식요소 선택 가상클래스 ]
+    - 전제조건: 자식요소가 같은 종류일 경우
+    :first-child 첫번째 자식
+    :last-child 마지막 자식
+    :nth-child(순번) 몇번째 자식
+    - 순번은 1부터
+
+    - 전제조건: 자식요소가 여러가지일 경우
+    :first-of-type 첫번째 자식
+    :last-of-type 마지막 자식
+    :nth-of-type 첫번째 자식
+    - 순번은 1부터
+
+*/
+
+
 /****************** 3. 하단영역 *********************/
 .info{
     height: 241px;
