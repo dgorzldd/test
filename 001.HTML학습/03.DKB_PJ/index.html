@@ -10,16 +10,42 @@
 </head>
 <link rel="stylesheet" href="css/main.css">
 
-<body>
+<body class="scbar">
     <!-- 레이아웃: 기본적으로 이중박스구조
             1. 겉박스 : width가 auto인 끝까지 가는 블록박스
             2. 속박스 : width가 특정 px을 가지는 중앙정렬 블록박스
         -->
 
     <!-- 1. 상단영역 -->
-    <div>
+    <div id="top">
         <header class="ibx top">
-
+            <!-- 메인로고 -->
+            <h1 id="logo">
+                <img src="./images/tvnlogo2.png" alt="tvN 로고">
+            </h1>
+            <!-- GNB메뉴 -->
+            <nav class="gnb">
+                <ul>
+                    <li>
+                        <a href="#">프로그램소개</a>
+                    </li>
+                    <li>
+                        <a href="#">미리보기</a>
+                    </li>
+                    <li>
+                        <a href="#">동영상</a>
+                    </li>
+                    <li>
+                        <a href="#">사진첩</a>
+                    </li>
+                    <li>
+                        <a href="#">OST</a>
+                    </li>
+                    <li>
+                        <a href="#">시청자 게시판</a>
+                    </li>
+                </ul>
+            </nav>
         </header>
     </div>
     <!-- 2. 메인영역 -->
@@ -40,7 +66,7 @@
                         </span>
                     </div>
                     <!-- 캐릭터설명박스 -->
-                    <div class="cd">
+                    <div class="cd scbar">
                         <!-- 캐릭터 타이틀 -->
                         <h3>도깨비(김신), 939세</h3>
                         <!-- 캐릭터 설명 -->
@@ -75,7 +101,7 @@
                         </span>
                     </div>
                     <!-- 캐릭터설명박스 -->
-                    <div class="cd">
+                    <div class="cd scbar">
                         <h3>지은탁, 19세</h3>
 
                         <p>
@@ -106,7 +132,7 @@
                         </span>
                     </div>
                     <!-- 캐릭터설명박스 -->
-                    <div class="cd">
+                    <div class="cd scbar">
                         <h3>저승사자, 30대 후반 추정</h3>
 
                         <p>죽는다는 건, 그와 선약이 생기는 거다. 누구나 그를 보면 놀란다. 처음엔 잘생겨서, 그 다음엔 내가 죽었구나 싶어서. 생의 마지막 순간에 마중 나오면서까지 저렇게 섹시할
@@ -133,7 +159,7 @@
                         </span>
                     </div>
                     <!-- 캐릭터설명박스 -->
-                    <div class="cd">
+                    <div class="cd scbar">
                         <h3>써니, 20대 중후반</h3>
 
                         <p>혈혈단신 천애고아. 철없이 사는 여자가 세상 살기 가장 편하다는 걸 일찍부터 깨달았다. 남자의 외모는 내면으로 들어가는 창이고, 김중배의 다이아몬드는 잡는 게 당연한 거고,
@@ -150,9 +176,41 @@
 
     </div>
     <!-- 3. 하단영역 -->
-    <div>
+    <div id="info">
         <footer class="ibx info">
-
+            <!-- 하단 링크 -->
+            <div class="blink">
+                <ul>
+                    <li>
+                        <a href="#">법적고지</a>
+                    </li>
+                    <li>
+                        <a href="#">영상정보처리기기운영/관리방침</a>
+                    </li>
+                    <li>
+                        <a href="#">이메일무단수집거부</a>
+                    </li>
+                    <li>
+                        <a href="#">사이버감사실</a>
+                    </li>
+                    <li>
+                        <a href="#">찾아오시는길</a>
+                    </li>
+                    <li>
+                        <a href="#">개인정보처리방식</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- 회사주소 -->
+            <address class="addr">
+                주)씨제이이엔엠 CJ ENM 대표이사 강호성, 허민호<br>
+                주소 (03926) 서울시 마포구 상암산로 66 사업자 등록번호 106-81-51510 개인정보보호책임자 김재환<br>
+                © CJ ENM. All Rights Reserved.
+            </address>
+            <!-- 하단로고 -->
+            <div class="blogo">
+                <img src="images/blogo.png" alt="하단로고">
+            </div>
         </footer>
 
     </div>
