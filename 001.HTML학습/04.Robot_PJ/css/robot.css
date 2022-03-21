@@ -19,19 +19,39 @@ html,body{
 }
 body{
     background: url(../images/bg.jpg) no-repeat fixed top/cover;
+    overflow-x: hidden;
+    /* 가로 스크롤 숨기기 - html요소에 주지 않도록 주의(sticky 안됨) */
 }
 
 /* 공사중 아웃라인 */
 /* body *{
     outline: 2px dashed lime;
 } */
+/**********************
+    [ 요소 정중앙 정렬법 ]
+    1. 50%로 밀고 자기 크기의 절반만큼 빼기
+    ((사용예) calc(50% - 특정px)
+    - 주의 : 마이너스 기호 앞뒤에 띄어쓰기 필수
+    ->>> calc() 메서드 사용
+    - 사칙연산이 모두 가능하며 여기서는 유동적인 % 단위에서 특정 px을 빼는데 사용함
+
+    2. 50%로 밀고 자기자신 크기의 절반 반대 방향 이동
+    ->>> transform: translate(-50%, -50%) 사용
+
+**********************/
+
 
 /* 로봇페이지 로고 */
 h1#logo{
     position: fixed;
-    top: 50px;
-    left: 50px;
+    top: calc(50% - 100px);
+    left: calc(50% - 100px);
     /* fixed의 부모는 항상 보이는 화면 */
+    z-index: 1; /* 위치 위 */
+
+    /* 크기 확대 2배 */
+    transform: scale(2);
+
     width: 200px;
     height: 200px;
     border: 2px solid #ccc;
@@ -55,7 +75,122 @@ h1#logo{
     background: pink url(../images/robot_03.png) no-repeat;
     background-position: center 0;
     background-size: 160px;
+
+    /* 애니메이션 : 이시이지반방마 */
+    animation: logoAni 2s ease-in-out 2s forwards,
+                logoAni2 1s ease-in-out 4s infinite alternate;
 }
+
+/* 로고 애니 키프레임 */
+@keyframes logoAni {
+    /* 시작값 - 초기값과 같으면 생략 */
+    /* from{
+        top: calc(50% - 100px);
+        left: calc(50% - 100px);
+        transform: scale(2);
+    } */
+
+    /* 80%값 */
+    80%{
+        top: 50px;
+        left: 50px;
+        transform: scale(1) rotate(0deg);
+    }
+
+    /* 80%~100% 구간에 rotate 각도만 20도로 변경 애니
+    후속 애니와 자연스럽게 연결됨 */
+
+     /* 끝값 */
+    100%{
+        top: 50px;
+        left: 50px;
+        transform: scale(1) rotate(20deg);
+    }
+} /* logoAni 키프레임 */
+
+/* 로고 흔들기 키프레임 */
+@keyframes logoAni2 {
+    0%{
+        transform: rotate(20deg);
+    }
+    0%{
+        transform: rotate(-20deg);
+    }
+}
+
+/****************************************
+    [ CSS로 애니메이션 하기 ]
+
+    - 시간에 따라 CSS 설정이 변경되어 애니메이션 하도록 키프레임을 설정하고 
+    이것을 호출함으로 의도된 연출을 구현하는 것이 CSS 애니메이션이다
+
+    [ 애니메이션 키프레임 만들기 ]
+    
+    - 키프레임이란? 애니메이션 장면을 넣는 코드
+
+    1. 두장면 키프레임
+
+    @keyframes 키프레임이름{
+        from{시작CSS설정}
+        to{끝나는CSS설정}
+    }
+
+    또는
+
+    @keyframes 키프레임이름{
+        0%{시작CSS설정}
+        100%{끝나는CSS설정}
+    }
+
+    -> 만약 from설정이 초기 설정과 같다면 from 생략 가능
+
+    2. 여러장면 키프레임
+    @keyframes 키프레임이름{
+        0%{시작CSS설정}
+        10%{시작CSS설정}
+        20%{시작CSS설정}
+        ...
+        80%{시작CSS설정}
+        90%{시작CSS설정}
+        100%{끝나는CSS설정}
+    }
+
+    (1) 장면에 대한 시간 계산은 어떻게 하나?
+    -> 전체시간 * 설정된%/100
+
+    (2) 전체시간은 언제 셋팅하나? -> 호출시에 셋팅
+
+    [ 설정된 키프레임 호출하는 방법 ]
+
+    animation : 이시이지반방마
+    (이름 시간 이징 지연 반복 방향 마지막상태)
+
+    1. 이름 (animation-name) : 키프레임 이름
+    
+    2. 시간 (animation-duration) : 애니메이션 동작 시간
+        -> 초단위(s)
+    
+    3. 이징 (animation-timing-function) : easing 가속도
+    
+    4. 지연 (animation-delay) : 애니메이션 시작 지연시간(s)
+    
+    5. 반복 (animation-iteration-count) : 애니메이션 반복
+        - 기본값 1, 숫자를 쓰면 숫자만큼 반복함
+        - 영원히 infinite(인피니트) 
+    
+    6. 방향 (animation-direction) : 시작 -> 끝
+        - 반복시 시작과 반대경로로 애니메이션을 만들어줌
+        -> alternate : 시작 -> 끝, 끝 -> 시작
+        - 유의사항 : 반복횟수 2회 이상이어야 적용
+    
+    7. 마지막상태 (animation-fill-mode) :
+        - 애니메이션이 끝났을 때 처음으로 돌아가는게 기본인데
+        -> fowards(앞쪽에 즉, 애니끝장면으로 마무리)
+        - 유의사항 : infinite(영원히)일 때는 해당사항 없음
+    
+
+****************************************/
+
 
 /* 내용보기 링크 타이틀 */
 .link{
@@ -64,6 +199,34 @@ h1#logo{
     right: 50px;
     /* 부모는? 보이는화면 */
 }
+
+/* 투명했다 보이는 키프레임호출 클래스 */
+.showCall{
+    opacity: 0; /* 처음에 투명 */
+    
+    /* 애니메이션 : 이시이지반방마 */
+    animation: showIt 1s ease-out 6s forwards;
+}
+
+/* 애니 등장시간 차이 클래스 : 기본설정이 6s인데 덮어씀*/
+.cT1{
+    animation-delay: 7s;
+}
+.cT2{
+    animation-delay: 8s;
+}
+
+/* 투명했다가 보이는 키프레임 */
+@keyframes showIt{
+    0%{opacity: 0;}
+    20%{opacity: 0.5;}
+    30%{opacity: 0;}
+    40%{opacity: 1;}
+    60%{opacity: 0.3;}
+    70%{opacity: 0;}
+    100%{opacity: 1;}
+} /* showIt 키프레임 */
+
 /* 링크 a요소 */
 .link a{
     font-family: 'Black Ops One', cursive;
@@ -105,13 +268,29 @@ h1#logo{
 #head{
     position: relative;
     /* 부모자격! */
+    left: 100%;
+    /* 머리 오른쪽 바깥에 나가있음 */
     width: 250px;
     height: 250px;
     background: url(../images/metal01.jpg) no-repeat center/cover;
     margin: 0 auto;
     margin-top: 100px;
     border-radius: 50px 50px 0 0;
+
 }
+
+/* 로봇애니 호출 클래스 : 로봇머리, 로봇몸 요소에서 호출 */
+.rAni{
+    /* 애니메이션 : 이시이지반방마 */
+    animation: robotAni 1.5s ease-out 3s forwards;
+}
+/* 로봇머리, 몸 제자리 키프레임 */
+@keyframes robotAni{
+    to{
+        left: 0;
+    }
+}/* robotAni 키프레임 */
+
 /* 눈1 */
 #eye1{
     position: absolute;
@@ -155,7 +334,18 @@ h1#logo{
     width: 96px;
     height: 42px;
     background: url(../images/mouth.png) no-repeat 0/100% 100%;
+
+    /* 애니메이션 : 이시이지반방마 */
+    animation: mouthAni .1s linear 6s infinite alternate;
 }
+
+/* 입움직이기 키프레임 */
+@keyframes mouthAni {
+    to{
+        transform: scaleY(.2);
+    }
+} /* mouthAni 키프레임 */
+
 /* 귀1 */
 #ear1{
     position: absolute;
@@ -185,6 +375,8 @@ h1#logo{
 #body{
     position: relative;
     /* 부모자격! */
+    left: -100%;
+    /* 몸 왼쪽 바깥에 나가있음 */
     width: 250px;
     height: 300px;
     margin: 0 auto;
@@ -223,7 +415,28 @@ h1#logo{
 #arm2{
     top: 0px;
     right: -53px;
+    transform-origin: top;
+    transform: rotate(0deg);
+    /* 애니메이션 : 이시이지반방마 */
+    animation: armAni .8s ease-in-out 5s forwards,
+                armAni2 .4s ease-in-out 5.8s infinite alternate;
 }
+
+/* 오른팔 키프레임 */
+@keyframes armAni{
+    to{
+        transform: rotate(-140deg);
+    }
+}/* armAni 키프레임 */
+
+/* 오른팔 흔들기 키프레임 */
+@keyframes armAni2{
+    /* 첫번째 애니가 끝난 상태에서 출발(from 생략) */
+    to{
+        transform: rotate(-155deg);
+    }
+} /* armAni2 키프레임 */
+
 /* 왼다리 */
 #leg1{
     top: 100%;
@@ -235,6 +448,27 @@ h1#logo{
     right: 0;
 }
 
+/* 어깨공통 */
+.sh{
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background: url(../images/metal01.jpg) no-repeat center/cover;
+}
+
+/* 왼어깨 */
+#sh1{
+    top: -37px;
+    left: -80px;
+    border-radius: 50% 5px 5px 50%;
+}
+/* 오른어깨 */
+#sh2{
+    top: -37px;
+    right: -80px;
+    border-radius: 5px 50% 50% 5px;
+    /* 왼쪽위부터 시계방향 */
+}
 /* TV */
 #tv{
     position: absolute;

@@ -3,13 +3,70 @@
 
 <head>
     <meta charset="utf-8">
+    <!-- 메타태그 뷰포트 필수 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="드라마 도깨비의 캐릭터를 소개하는 tvN 서브소개페이지입니다.">
     <title>
         쓸쓸하고 찬란하신(神) 도깨비
     </title>
-</head>
-<link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/main.css">
+    <!-- 미디어쿼리 CSS -->
+    <link rel="stylesheet" href="css/media.css">
+    <!-- 자바스크립트 구역 -->
+    <script>
+        // JS 주석
+        // JS 코드 저장공간 -> 함수(호출싱만 실행)
+        // 함수는 키워드 function을 사용함
+        // 함수형식 : function 함수명(){코드}
+        function 바꿔(){
+            // 1. 함수호출확인 : 경고창 띄우기
+            //alert("나야나!");
 
+            // 2. 변경대상선정 : .top
+            // 변수에 대상을 담자
+            // 변수는 데이터가 사는 곳
+            // 여기를 봐!! var
+            // JS에서 점(.)은 하위요소로 내려감
+            // 우주.은하계.태양계.지구.대한민국.강남구.그린
+            // JS는 명령문 끝에 세미콜론(;)을 쓴다
+            // JS에서 이퀄(=)은 오른쪽 데이터가 왼쪽에 들어감
+            var 대상 = document.getElementsByClassName("top").item(0);
+            // 문서 탐색하기
+            // (1) html문서 전체 -> document
+            // (2) 문서내용 중 아이디 요소 -> get Element
+            //                              가져와 요소
+            //                              by Id
+            //                              아이디로!
+            // -----> getElementById(아아디명)
+            // (3) 문서내용 중 클래스 요소 -> get Elements
+            //                              가져와 요소들
+            //                              by ClassName
+            //                              클래스로!
+            // -----> getElementByClassName(클래스명)
+            // 주의! 클래스는 여러개 사용하는 것이므로 무조건 순번으로 선택함! 첫번째는 0번!
+            // -----> getElementByClassName(클래스명).item(0)
+            // item(순번) -> 여러개 요소 중 몇번째 순번 선택
+
+            // 3. 대상에게 클래스 넣기!
+            대상.classList.toggle("on");
+            /**********************************************
+                [ 요소에 클래스를 넣고 빼는 객체]
+                classList 객체
+                (1) add 매서드 : add(클래스명) - 클래스넣기
+                (2) remove 매서드 : remove(클래스명) - 클래스빼기
+                (3) toggle 매서드 : toggle(클래스명) - 클래스넣기/빼기
+                -> 해당클래스가 없으면 넣고 있으면 제거함
+                -> toggle(토글)은 하나가 2개이상의 기능을 할 때 부르는 단어
+                _____________________________________
+                - 객체는 미리 만들어진 프로그램 단위체
+                - 매서드는 객체 안에 만들어진 함수
+                - 함수는 명령어 집합
+
+            **********************************************/
+        }
+        
+    </script>
+</head>
 <body class="scbar">
     <!-- 레이아웃: 기본적으로 이중박스구조
             1. 겉박스 : width가 auto인 끝까지 가는 블록박스
@@ -23,20 +80,95 @@
             <h1 id="logo">
                 <img src="./images/tvnlogo2.png" alt="tvN 로고">
             </h1>
+            <!-- SNS 메뉴 -->
+            <div class="snsbx ibx">
+                <nav class="sns">
+                    <ul>
+                        <li>
+                            <a href="#">로그인</a>
+                        </li>
+                        <li>
+                            <a href="#">회원가입</a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="ir">
+                                    트위터 바로가기
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="ir">
+                                    페이스북 바로가기
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="ir">
+                                    인스타그램 바로가기
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
             <!-- GNB메뉴 -->
             <nav class="gnb">
                 <ul>
-                    <li>
+                    <li class="sm sm1">
                         <a href="#">프로그램소개</a>
+                        <!-- 서브메뉴 -->
+                        <div class="smenu">
+                            <ol>
+                                <li>
+                                    <a href="#">프로그램 소개</a>
+                                </li>
+                                <li>
+                                    <a href="#">인물소개</a>
+                                </li>
+                                <li>
+                                    <a href="#">인물관계도</a>
+                                </li>
+                            </ol>
+                        </div>
                     </li>
                     <li>
                         <a href="#">미리보기</a>
                     </li>
-                    <li>
+                    <li class="sm sm2">
                         <a href="#">동영상</a>
+                        <!-- 서브메뉴 -->
+                        <div class="smenu">
+                            <ol>
+                                <li>
+                                    <a href="#">클립영상</a>
+                                </li>
+                                <li>
+                                    <a href="#">다시보기</a>
+                                </li>
+                                <li>
+                                    <a href="#">예고편</a>
+                                </li>
+                                <li>
+                                    <a href="#">스페셜</a>
+                                </li>
+                            </ol>
+                        </div>
                     </li>
-                    <li>
+                    <li class="sm sm3">
                         <a href="#">사진첩</a>
+                        <div class="smenu">
+                            <ol>
+                                <li>
+                                    <a href="#">현장 포토</a>
+                                </li>
+                                <li>
+                                    <a href="#">대표 포스터</a>
+                                </li>
+                            </ol>
+                        </div>
                     </li>
                     <li>
                         <a href="#">OST</a>
@@ -46,12 +178,15 @@
                     </li>
                 </ul>
             </nav>
+            <!-- 모바일용 햄버거버튼 : 햄버거모양(ㄷ한자키) -->
+            <button class="ham" onclick="바꿔()"></button>
         </header>
     </div>
     <!-- 2. 메인영역 -->
     <div>
         <main class="ibx cont">
             <!-- 캐릭터박스 -->
+
             <div id="cbx">
                 <!-- 1. 공유캐릭터 -->
                 <div class="cat">
@@ -173,6 +308,8 @@
                 </div>
             </div>
         </main>
+        <!-- 드라마문구 이미지 -->
+        <img src="images/dkb_main.png" alt="도깨비문구" id="dtxt">
 
     </div>
     <!-- 3. 하단영역 -->
@@ -211,6 +348,13 @@
             <div class="blogo">
                 <img src="images/blogo.png" alt="하단로고">
             </div>
+            <!-- 브랜드 바로가기 : 셀렉트박스 -->
+            <select name="sel" id="sel">
+                <option value="opt">브랜드 바로가기</option>
+                <option value="tvn">tvN</option>
+                <option value="ocn">OCN</option>
+                <option value="mnet">MNEt</option>
+            </select>
         </footer>
 
     </div>
